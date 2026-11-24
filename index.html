@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VITAGUM — витаминные мишки, халяль, без желатина</title>
+<meta name="description" content="VITAGUM — витаминный халяль-мармелад на пектине, без желатина. Магазины в Астане и Алматы, доставка по всему Казахстану, оплата Kaspi, заказ в WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script>if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js')</script>
+<style>
+  .home{--sec-gap:64px;--soft:#fff;--chk:var(--green)}
+  .sec{margin:var(--sec-gap) 0}
+  .sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+  .sec-h h2{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.1}
+  .sec-h p{color:var(--muted);max-width:520px;margin-top:6px}
+  .kk{display:block;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+
+  /* hero */
+  .home .hero{background:radial-gradient(circle at 78% 52%,var(--accent) 0 27%,transparent 27.5%),linear-gradient(120deg,var(--brand-dark) 0%,var(--brand) 60%,#9c74de 100%)}
+  .hero .kz{font-weight:800;opacity:.95;margin-bottom:4px}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:900;padding:14px 22px;border-radius:99px;transition:transform .2s,background .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-y{background:var(--accent);color:var(--ink)}
+  .btn-o{border:2px solid rgba(255,255,255,.8);color:#fff}
+  .btn-o:hover{background:rgba(255,255,255,.12)}
+  .btn-d{background:var(--ink);color:#fff}
+  .home .hero-art{position:relative;min-height:240px;align-items:center}
+  .home .hero-art svg{width:clamp(80px,11vw,140px)}
+  .home .hero-art svg:nth-child(2){margin-top:50px}
+
+  /* вкусы */
+  .flv{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .fc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .fc .sw{aspect-ratio:1/.8;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 16%,#fff)}
+  .fc .sw svg{width:42%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.15));transition:transform .3s}
+  .fc:hover .sw svg{transform:rotate(-6deg) scale(1.05)}
+  .fc .bd{padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .fc h3{font-size:19px;font-weight:900;display:flex;align-items:center;gap:8px}
+  .fc h3 i{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}
+  .fc .price{font-size:20px}
+  .fc .row{gap:8px;flex-wrap:wrap}
+
+  /* боль → решение */
+  .why{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .pr{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .pr q{display:block;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:19px;quotes:"«" "»";color:var(--ink)}
+  .pr p{margin-top:10px;color:var(--muted)}
+  .pr p b{color:var(--ink)}
+  .pr .arr{display:inline-block;margin-top:12px;font-weight:900;color:var(--green)}
+
+  /* промо */
+  .promo{background:var(--accent);color:var(--ink);border-radius:32px;padding:36px 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;position:relative;overflow:hidden}
+  .promo h2{font-size:clamp(28px,4.4vw,44px);font-weight:900;line-height:1.05}
+  .promo p{margin-top:8px;max-width:460px}
+  .promo .note{font-size:13px;margin-top:10px;opacity:.8}
+  .timer{display:flex;gap:10px;flex-wrap:wrap}
+  .timer div{background:var(--ink);color:#fff;border-radius:18px;min-width:72px;padding:12px 10px;text-align:center;flex:1}
+  .timer b{display:block;font-size:30px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1}
+  .timer span{font-size:12px;font-weight:700;opacity:.8}
+  .tlabel{font-weight:800;margin-bottom:10px}
+
+  /* как заказать — одна строка */
+  .order-line{margin:28px 0 0;text-align:center;font-weight:800}
+  .order-line a{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+
+  /* о бренде */
+  .about{scroll-margin-top:96px}
+  .about .lead{color:var(--muted);font-size:17px;max-width:680px}
+  .about .lead b{color:var(--ink)}
+  .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  .val{border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);background:var(--card)}
+  .val .vi{width:56px;height:56px;border-radius:18px;display:grid;place-items:center}
+  .val .vi svg{width:26px}
+  .val h3{font-size:19px;font-weight:900}
+  .val p{color:var(--muted)}
+  .val.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .val.dark p{color:rgba(255,255,255,.82)}
+  .val.dark q{display:block;font-weight:800;color:var(--accent);quotes:"«" "»"}
+
+  /* магазины */
+  .store{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+  .store h2{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.1}
+  .store p{color:var(--muted);margin-top:6px;max-width:560px}
+  .store .btn{position:relative;z-index:1}
+  .store .ghost{position:absolute;right:-14px;bottom:-18px;width:110px;opacity:.12}
+
+  /* мягкие появления — только если движение разрешено */
+  @media (prefers-reduced-motion:no-preference){
+    .js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .js .rv.in{opacity:1;transform:none}
+  }
+
+  @media (max-width:900px){
+    .flv{grid-template-columns:repeat(2,1fr)}
+    .vals{grid-template-columns:1fr}
+    .promo{grid-template-columns:1fr;padding:30px 24px}
+    .home .hero-art{min-height:170px}
+    .home .hero{background:radial-gradient(circle at 50% 84%,var(--accent) 0 21%,transparent 21.5%),linear-gradient(120deg,var(--brand-dark) 0%,var(--brand) 60%,#9c74de 100%)}
+  }
+  @media (max-width:640px){
+    .home{--sec-gap:48px}
+    .why{grid-template-columns:1fr}
+    .store{padding:22px}
+    .store .btn{flex:1 1 auto;justify-content:center}
+    .home .hero{padding:28px 20px;border-radius:26px}
+    .cta .btn{flex:1 1 auto;justify-content:center}
+  }
+  @media (max-width:420px){
+    .flv{gap:10px}
+    .fc .bd{padding:12px}
+    .fc h3{font-size:16px}
+    .fc .add{width:100%;padding:10px 12px}
+    .timer div{min-width:0;padding:10px 6px}
+    .timer b{font-size:24px}
+  }
+</style>
+</head>
+<body>
+<div id="vg-header" data-active="home"></div>
+
+<main class="wrap home">
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="heroT">
+    <div>
+      <small>vitamins &amp; minerals · халяль · без желатина</small>
+      <h1 id="heroT">Витаминные мишки, которые ребёнок попросит сам</h1>
+      <p class="kz">Сәлеметсіз бе, мамочки!</p>
+      <p>VITAGUM — жевательный мармелад на пектине с фруктовым вкусом. Витаминный мармелад как часть рациона — вместо очередной конфеты у кассы.</p>
+      <div class="cta">
+        <a class="btn btn-y wa-dyn" href="#" target="_blank" rel="noopener" data-text="Сәлеметсіз бе! Хочу заказать VITAGUM.">Заказать в WhatsApp</a>
+        <a class="btn btn-o" href="shop.html">В магазин →</a>
+      </div>
+      <div class="badges">
+        <span>☪ Халяль</span><span>Пектин, без желатина</span><span>Оплата Kaspi</span><span>Прямая поставка из Ташкента</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 60 70"><use href="#bear" fill="#d93a3a"/></svg>
+      <svg viewBox="0 0 60 70"><use href="#bear" fill="#4b3f9e"/></svg>
+      <svg viewBox="0 0 60 70"><use href="#bear" fill="#f08a24"/></svg>
+    </div>
+  </section>
+
+  <!-- 2. Вкусы -->
+  <section class="sec rv" aria-labelledby="flT">
+    <div class="sec-h">
+      <div><span class="kk">VITAGUM Organic</span><h2 id="flT" class="serif">Выберите вкус</h2>
+        <p>Четыре вкуса мишек в фиолетовых пачках — <span id="orgPack">150 г, 40 мишек в пачке</span>.</p></div>
+      <a class="pill" href="shop.html">Весь каталог →</a>
+    </div>
+    <div class="flv" id="flv"></div>
+  </section>
+
+  <!-- 3. Почему мамы -->
+  <section class="sec rv" aria-labelledby="whyT">
+    <div class="sec-h"><div><span class="kk">Знакомо?</span><h2 id="whyT" class="serif">Почему мамы выбирают VITAGUM</h2></div></div>
+    <div class="why">
+      <article class="pr"><q>Капли не пьёт — говорит, горько</q>
+        <p><b>Мишки жуют как обычный мармелад.</b> Фруктовый вкус, привычная форма — не нужно уговаривать ложкой.</p></article>
+      <article class="pr"><q>У кассы каждый раз просит сладкое</q>
+        <p><b>Мишка вместо конфеты.</b> Витаминный мармелад как часть рациона — сладкое, которое мама выбирает сама. Сколько в день — смотрите в разделе <a href="product.html#how" style="color:var(--brand);font-weight:800">«Как принимать»</a>.</p></article>
+      <article class="pr"><q>Для нас важно, чтобы было халяль</q>
+        <p><b>Халяль, на пектине, без желатина.</b> Основа — растительный пектин, а не желатин животного происхождения.</p></article>
+      <article class="pr"><q>Боюсь заказывать в интернете</q>
+        <p><b>Магазины в Астане и Алматы.</b> Можно прийти и посмотреть вживую, оплата Kaspi по счёту, а по Казахстану — почта с трек-номером.</p></article>
+    </div>
+  </section>
+
+  <!-- 4. Промо -->
+  <section class="sec promo rv" aria-labelledby="prT">
+    <div>
+      <span class="kk" style="color:var(--ink)">Каждую пятницу</span>
+      <h2 id="prT" class="serif">Берекелі Жұма −10 %</h2>
+      <p>По пятницам — скидка 10 % на заказ. Напишите в WhatsApp, и мы посчитаем сумму со скидкой.</p>
+      <div class="cta"><a class="btn btn-d wa-dyn" href="#" target="_blank" rel="noopener" data-text="Сәлеметсіз бе! Хочу заказать VITAGUM со скидкой «Берекелі Жұма» −10 %.">Заказать в WhatsApp</a></div>
+      <p class="note">Подробности акции — у менеджера в WhatsApp.</p>
+    </div>
+    <div>
+      <div class="tlabel" id="tLabel">До Берекелі Жұма осталось:</div>
+      <div class="timer" role="timer" aria-labelledby="tLabel">
+        <div><b id="tD">0</b><span id="tDw">дней</span></div>
+        <div><b id="tH">00</b><span>часов</span></div>
+        <div><b id="tM">00</b><span>минут</span></div>
+        <div><b id="tS">00</b><span>секунд</span></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="order-line rv">Как заказать, доставка и оплата — <a href="info.html#order">коротко по шагам →</a></p>
+
+  <!-- 5. О бренде -->
+  <section class="sec about rv" id="about" aria-labelledby="abT">
+    <div class="sec-h"><div><span class="kk">Біз туралы</span><h2 id="abT" class="serif">О бренде</h2></div></div>
+    <p class="lead"><b>VITAGUM</b> — витаминные мишки на пектине с натуральными экстрактами фруктов и немецкими витаминами. Производство — в Узбекистане, поставка напрямую из Ташкента. В Казахстане бренд представляет официальный дистрибьютор Vostok Shop KZ.</p>
+    <div class="vals">
+      <div class="val">
+        <span class="vi" style="background:#e6f4e6" data-bear="#3a9a4f" aria-hidden="true"></span>
+        <h3>Халяль, пектин без желатина</h3>
+        <p>Для многих семей это первый вопрос. Мишки держат форму на цитрусовом пектине — желатина в составе нет.</p>
+      </div>
+      <div class="val">
+        <span class="vi" style="background:#efe6fb" data-bear="#7b4fc4" aria-hidden="true"></span>
+        <h3>Понятный состав</h3>
+        <p>Пектин, экстракты фруктов, витамины и минералы — без загадок. Состав каждого вкуса — <a href="product.html#composition" style="color:var(--brand);font-weight:800">на странице товара</a>, фото этикетки пришлём в WhatsApp.</p>
+      </div>
+      <div class="val dark">
+        <span class="vi" style="background:var(--accent)" data-bear="#d93a3a" aria-hidden="true"></span>
+        <h3>Сначала вопрос, потом прайс</h3>
+        <p>Не отправляем «вот прайс, выбирайте». Сначала спросим возраст ребёнка и что важно семье — и подскажем один подходящий вариант.</p>
+        <q>Сәлеметсіз бе! Балаға қанша жас?</q>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Магазины -->
+  <section class="sec store rv" aria-labelledby="stT">
+    <div><span class="kk">Офлайн</span><h2 id="stT" class="serif">Приходите вживую</h2>
+      <p>4 магазина Vostok Shop в Астане и Алматы — адрес ближайшего пришлём в WhatsApp. Можно посмотреть пачки, спросить продавца и купить сразу.</p></div>
+    <a class="btn btn-d wa-dyn" href="#" target="_blank" rel="noopener" data-text="Сәлеметсіз бе! Подскажите адрес ближайшего магазина с VITAGUM.">Узнать адрес в WhatsApp</a>
+    <svg class="ghost" viewBox="0 0 60 70" aria-hidden="true"><use href="#bear" fill="#7b4fc4"/></svg>
+  </section>
+
+  <!-- 7. Опт -->
+  <section class="b2b rv" aria-labelledby="b2bT">
+    <div><h3 id="b2bT">VITAGUM для магазинов и аптек</h3><p>Опт от 100 000 ₸. Напишите — пришлём оптовый прайс и условия поставки.</p></div>
+    <a href="#" class="wa-dyn" target="_blank" rel="noopener" data-text="Сәлеметсіз бе! Интересует опт VITAGUM, пришлите прайс.">Запросить оптовый прайс</a>
+  </section>
+</main>
+
+<div id="vg-footer"></div>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const org = VG.prodOf('org');
+
+  // 2. карточки вкусов
+  if(org.weight) $('#orgPack').textContent = `${org.weight}${org.pcs?`, ${org.pcs} мишек в пачке`:''}`;
+  $('#flv').innerHTML = org.flavors.map(([,c],i)=>{ const n=VG.flavName(org,i); return `
+    <article class="fc" style="--c:${c}">
+      <a class="sw" href="product.html?id=org&amp;f=${i}" aria-label="${org.name} — ${n}">${VG.bear(c)}</a>
+      <div class="bd">
+        <h3><i aria-hidden="true"></i>${n}</h3>
+        <div class="row">
+          <div class="price">${org.price!=null?VG.fmt(org.price):VG.t('priceAsk')}<small>${VG.tp(org,'priceNote')||''}</small></div>
+          <button class="add" data-fi="${i}" aria-label="В корзину: ${n}">В корзину</button>
+        </div>
+      </div>
+    </article>`}).join('');
+  document.querySelectorAll('[data-bear]').forEach(el=>{ el.innerHTML = VG.bear(el.dataset.bear); });
+  $('#flv').addEventListener('click',e=>{
+    const b=e.target.closest('[data-fi]'); if(!b) return;
+    VG.add('org', +b.dataset.fi);
+    b.textContent='✓ Добавлено'; setTimeout(()=>b.textContent='В корзину',900);
+  });
+
+  // 4. таймер до ближайшей пятницы 00:00 по Asia/Almaty (UTC+5)
+  const OFF=5*3600e3, DAY=864e5;
+  function tick(){
+    const now=Date.now(), loc=new Date(now+OFF);            // «местное» время Алматы в UTC-полях
+    const dow=loc.getUTCDay(), midnight=Date.UTC(loc.getUTCFullYear(),loc.getUTCMonth(),loc.getUTCDate());
+    const isFri=dow===5;
+    const target=(isFri? midnight+DAY : midnight+((5-dow+7)%7)*DAY) - OFF; // пятница: считаем до конца дня
+    let s=Math.max(0,Math.floor((target-now)/1000));
+    $('#tLabel').textContent = isFri ? 'Сегодня Берекелі Жұма! До конца акции:' : 'До Берекелі Жұма осталось:';
+    const p=n=>String(n).padStart(2,'0');
+    const d=Math.floor(s/86400); s%=86400;
+    $('#tD').textContent=d; $('#tDw').textContent=d%10===1&&d%100!==11?'день':[2,3,4].includes(d%10)&&![12,13,14].includes(d%100)?'дня':'дней';
+    $('#tH').textContent=p(Math.floor(s/3600)); s%=3600;
+    $('#tM').textContent=p(Math.floor(s/60));
+    $('#tS').textContent=p(s%60);
+  }
+  tick(); setInterval(tick,1000);
+
+  // мягкие появления при скролле
+  if(document.documentElement.classList.contains('js')){
+    const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  }
+})();
+</script>
+<!-- TODO:
+- Условия «Берекелі Жұма» (на какие товары, суммируется ли с другими скидками) — уточнить у заказчика.
+- Адреса и часы работы 4 магазинов Vostok Shop (Астана, Алматы) — после подтверждения можно вывести на главной.
+- Реальные отзывы (хайлайт «ОТЗЫВ VITAGUM» в Instagram) — вернуть блок отзывов, когда будут разрешения на публикацию.
+- Цена 2 200 ₸ за Organic — со слов блогера, сверить.
+- Возраст: бриф «от 2 лет» vs liki.uz «старше 7 лет» — сверить с этикеткой для РК.
+- Документ о халяль-статусе (номер, орган) — уточнить.
+-->
+</body>
+</html>

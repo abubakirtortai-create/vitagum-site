@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Магазин — VITAGUM</title>
+<meta name="description" content="Каталог VITAGUM: витаминные мишки Organic, Detox, Kinder Gel. Халяль, без желатина. Доставка по Казахстану.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.extra-link{margin:22px 0 0;text-align:center;font-weight:800}.extra-link a{color:var(--brand)}
+.trust{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 14px;padding:0 16px}
+.trust::-webkit-scrollbar{display:none}
+.trust > span{flex:none;background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 12px;font-weight:800;font-size:13px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+.steps3 div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-weight:700;font-size:14px;display:flex;gap:10px;align-items:center}
+.steps3 b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-weight:900}
+.card{opacity:0;transform:translateY(14px);animation:cardUp .5s forwards}
+@keyframes cardUp{to{opacity:1;transform:none}}
+.ph svg{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.card:hover .ph svg{transform:rotate(-6deg) scale(1.06)}}
+.ph svg.swap{animation:pop .35s}
+@keyframes pop{50%{transform:scale(.85)}}
+.qv-btn{position:absolute;right:12px;bottom:12px;background:#fff;border-radius:99px;padding:7px 12px;font-weight:800;font-size:12px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.vcount{display:none;align-items:center;gap:6px;font-size:13px;color:var(--muted);font-weight:700}
+.vcount i{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:-4px;border:2px solid #fff}
+.flav button{min-height:36px}
+/* быстрый просмотр */
+.qv{position:fixed;left:0;right:0;bottom:0;max-height:92dvh;background:#fff;border-radius:24px 24px 0 0;transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);z-index:55;overflow:auto;overscroll-behavior:contain;visibility:hidden}
+.qv.show{transform:none;visibility:visible}
+.qv-in{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:24px}
+.qv-art{border-radius:20px;display:grid;place-items:center;aspect-ratio:1;position:relative}
+.qv-art svg{width:50%}
+.qv h3{font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:900}
+.qv dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin:14px 0}
+.qv dt{color:var(--muted)} .qv dd{font-weight:700}
+.qv .x{position:absolute;top:12px;right:14px;font-size:28px;width:40px;height:40px;z-index:2}
+.qv-bar{position:sticky;bottom:0;display:flex;gap:8px;align-items:center;padding:12px 24px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line)}
+.qv-bar .price{margin-right:auto}
+.qv-bar .wa2{background:#25d366;color:#fff;font-weight:900;padding:11px 16px;border-radius:99px}
+.qv .flav button{min-height:44px;font-size:14px}
+@media (min-width:901px){.qv{left:50%;top:50%;bottom:auto;width:min(880px,94vw);border-radius:var(--radius);transform:translate(-50%,-46%);opacity:0;transition:.35s}.qv.show{transform:translate(-50%,-50%);opacity:1}}
+@media (max-width:700px){.qv-in{grid-template-columns:1fr;padding:20px 16px}.qv-art{aspect-ratio:16/10}.qv-bar{padding-left:16px;padding-right:16px}}
+@media (max-width:700px){.steps3{grid-template-columns:1fr}}
+@media (max-width:560px){
+  .grid{grid-template-columns:repeat(2,1fr)!important;gap:10px}
+  .body{padding:12px}.body h3{font-size:15px}.card .desc{display:none}.price{font-size:17px}
+  .row{flex-direction:column;align-items:stretch;gap:8px}.add{text-align:center;min-height:44px;padding:10px}
+  .card .flav{display:none}.card .vcount{display:flex}.card .dots{display:none}
+  .qv-btn{display:none}
+}
+</style>
+</head>
+<body>
+<div id="vg-header" data-active="shop"></div>
+
+<main class="wrap">
+  <div class="bar">
+    <div>
+      <div class="crumbs"><a href="index.html">главная</a> / магазин (<span id="cnt">0</span>)</div>
+      <h2 class="serif">Каталог</h2>
+    </div>
+    <div class="tools">
+      <div class="chips" id="cats" style="display:none"></div>
+      <select id="sort" aria-label="Сортировка">
+        <option value="def">по умолчанию</option>
+        <option value="asc">сначала дешевле</option>
+        <option value="desc">сначала дороже</option>
+      </select>
+    </div>
+  </div>
+  <div class="trust" aria-label="Почему нам доверяют">
+    <span>☪ Халяль · пектин, без желатина</span><span>🧸 4 вкуса · 40 мишек в пачке</span><span>💳 Оплата Kaspi по счёту</span><span>📦 Почта по РК с трек-номером — 1 500 ₸</span><span>🚚 Курьер в день заказа: Астана, Алматы</span><span>🏬 4 магазина в Астане и Алматы</span><span>Дәрілік зат емес</span>
+  </div>
+  <div class="steps3"><div><b>1</b>Выберите вкус</div><div><b>2</b>Напишите в WhatsApp</div><div><b>3</b>Оплатите счёт Kaspi — получите трек-номер</div></div>
+  <div class="grid" id="grid"></div>
+  <p class="extra-link"><a href="#" class="wa-dyn" target="_blank" rel="noopener" data-text="Сәлеметсіз бе! Хочу узнать про другие витамины Vostok Shop">Магний, D3+K2 и другие витамины — у нашего дистрибьютора Vostok Shop →</a></p>
+  <section class="b2b" id="b2b" style="margin-top:48px">
+    <div><h3>VITAGUM для магазинов и аптек</h3><p>Опт от 100 000 ₸. Пришлём оптовый прайс, рекомендованную розницу и материалы для полки.</p></div>
+    <a href="#" class="wa-dyn" target="_blank" rel="noopener" data-text="Сәлеметсіз бе! Интересует опт VITAGUM, пришлите прайс.">Запросить оптовый прайс</a>
+  </section>
+</main>
+
+<div id="vg-footer"></div>
+<div class="qv" id="qv" role="dialog" aria-modal="true" aria-labelledby="qvTitle"></div>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  const P = VG_PRODUCTS, $ = s=>document.querySelector(s);
+  let cat='Все', sort='def', flav={};
+  function renderCats(){
+    const cats=['Все',...new Set(P.map(p=>p.cat))];
+    $('#cats').innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" data-c="${c}" aria-pressed="${c===cat}">${c}</button>`).join('');
+  }
+  function renderGrid(){
+    let list=P.filter(p=>cat==='Все'||p.cat===cat);
+    if(sort==='asc') list=[...list].sort((a,b)=>(a.price??Infinity)-(b.price??Infinity));
+    if(sort==='desc') list=[...list].sort((a,b)=>(b.price??-1)-(a.price??-1));
+    $('#cnt').textContent=list.length;
+    $('#grid').innerHTML=list.map((p,idx)=>`
+      <article class="card" style="animation-delay:${Math.min(idx,12)*50}ms">
+        <div class="ph" style="background:${p.bg}">
+          <a href="product.html?id=${p.id}" aria-label="${p.name}" style="position:absolute;inset:0"></a>
+          ${p.tag?`<span class="tag">${VG.tp(p,'tag')}</span>`:''}
+          ${VG.bear(p.flavors?p.flavors[flav[p.id]||0][1]:p.bear).replace('<svg','<svg data-art="'+p.id+'"')}
+          <button class="qv-btn" data-qv="${p.id}">Быстрый просмотр</button>
+        </div>
+        <div class="body">
+          <h3><a href="product.html?id=${p.id}">${p.name}</a></h3>
+          <div class="desc">${VG.tp(p,'desc')}</div>
+          ${p.flavors
+            ? `<div class="flav">${p.flavors.map(([n,c],i)=>`<button class="${i===(flav[p.id]||0)?'on':''}" data-fl="${p.id}:${i}" aria-pressed="${i===(flav[p.id]||0)}"><i style="background:${c}"></i>${VG.flavName(p,i)}</button>`).join('')}</div>`
+            : `<div class="dots">${p.dots.map(c=>`<i style="background:${c}"></i>`).join('')}</div>`}
+          ${p.flavors?`<button class="vcount" data-qv="${p.id}">${p.flavors.map(f=>`<i style="background:${f[1]}"></i>`).join('')}&nbsp;&nbsp;${plural(p.flavors.length,['вкус','вкуса','вкусов'])} →</button>`:''}
+          <div class="row">
+            <div class="price">${p.gift?'0 ₸':p.price==null?'по запросу':VG.fmt(p.price)}<small>${VG.tp(p,'priceNote')||''}</small></div>
+            ${p.price==null||p.gift
+              ? `<a class="add ask" target="_blank" rel="noopener" href="${VG.waLink(p.askText||`Сәлеметсіз бе! Интересует: ${p.name}`)}">Спросить</a>`
+              : p.flavors ? `<button class="add" data-add="${p.id}" data-qvm="${p.id}">В корзину</button>` : `<button class="add" data-add="${p.id}">В корзину</button>`}
+          </div>
+        </div>
+      </article>`).join('');
+  }
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('[data-add],[data-c],[data-fl],[data-qv],[data-qx]'); if(!t) return;
+    if(t.dataset.qv){openQV(t.dataset.qv);return}
+    if(t.hasAttribute('data-qx')){VG.close();return}
+    if(t.dataset.add&&t.dataset.qvm&&matchMedia('(max-width:560px)').matches){openQV(t.dataset.qvm);return}
+    if(t.dataset.fl){const [id,i]=t.dataset.fl.split(':');flav[id]=+i;
+      document.querySelectorAll(`[data-fl^="${id}:"]`).forEach(b=>{const on=b.dataset.fl===`${id}:${i}`;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+      const col=VG.prodOf(id).flavors[i][1];
+      document.querySelectorAll(`[data-art="${id}"] use`).forEach(u=>u.setAttribute('fill',col));
+      document.querySelectorAll(`[data-art="${id}"]`).forEach(sv=>{sv.classList.remove('swap');void sv.offsetWidth;sv.classList.add('swap')});
+      if($('#qv').classList.contains('show')) fillQVBar(id);
+      return}
+    else if(t.dataset.c){cat=t.dataset.c;renderCats();renderGrid()}
+    else if(t.dataset.add){VG.add(t.dataset.add,flav[t.dataset.add]);t.textContent='✓ Добавлено';setTimeout(()=>t.textContent='В корзину',900)}
+  });
+  function plural(n,f){const a=n%10,b=n%100;return n+' '+(a===1&&b!==11?f[0]:a>=2&&a<=4&&(b<10||b>=20)?f[1]:f[2])}
+  function deliv(){const c=VG.city;return c==='other'?'почта с трек-номером, 1 500 ₸':c?`курьер по городу ${VG.cityLabel()} в день заказа`:'выберите город'}
+  function qvWaText(p){const f=p.flavors?` — ${VG.flavName(p,flav[p.id]||0)}`:'';return p.askText||`Сәлеметсіз бе! Хочу: ${p.name}${f}, 1 шт.`}
+  function fillQVBar(id){const p=VG.prodOf(id);$('#qvBar').innerHTML=`
+      <div class="price">${p.gift?'0 ₸':p.price==null?'по запросу':VG.fmt(p.price)}<small>${VG.tp(p,'priceNote')||''}</small></div>
+      ${p.price!=null&&!p.gift?`<button class="add" data-add="${p.id}">В корзину</button>`:''}
+      <a class="wa2" target="_blank" rel="noopener" href="${VG.waLink(qvWaText(p))}">WhatsApp</a>`}
+  function openQV(id){const p=VG.prodOf(id), fi=flav[id]||0;
+    $('#qv').innerHTML=`<button class="x" data-qx aria-label="Закрыть">×</button>
+      <div class="qv-in">
+        <div class="qv-art" style="background:${p.bg}">${VG.bear(p.flavors?p.flavors[fi][1]:p.bear).replace('<svg','<svg data-art="'+p.id+'"')}</div>
+        <div>
+          <h3 id="qvTitle">${p.name}</h3>
+          <p class="desc" style="margin-top:6px">${VG.tp(p,'desc')}</p>
+          ${p.flavors?`<div class="flav" style="margin-top:14px">${p.flavors.map(([n,c],i)=>`<button class="${i===fi?'on':''}" data-fl="${p.id}:${i}" aria-pressed="${i===fi}"><i style="background:${c}"></i>${VG.flavName(p,i)}</button>`).join('')}</div>`:''}
+          <dl>
+            ${p.weight?`<dt>Пачка</dt><dd>${p.weight}${p.pcs?` · ${p.pcs} шт.`:''}</dd>`:''}
+            ${p.cat==='VitaGum'?'<dt>Для детей</dt><dd>возраст и порция — по этикетке, подскажем в WhatsApp</dd><dt>Основа</dt><dd>пектин, без желатина · халяль</dd>':''}
+            <dt>Доставка</dt><dd>${deliv()}</dd>
+            <dt>Оплата</dt><dd>Kaspi по счёту</dd>
+          </dl>
+          <a href="product.html?id=${p.id}${p.flavors?'&f='+fi:''}" style="color:var(--brand);font-weight:800">Подробнее о товаре →</a>
+          <p style="font-size:12px;color:var(--muted);margin-top:10px">Дәрілік зат емес.</p>
+        </div>
+      </div>
+      <div class="qv-bar" id="qvBar"></div>`;
+    fillQVBar(id); VG.open($('#qv'));}
+  $('#sort').onchange=e=>{sort=e.target.value;renderGrid()};
+  let lastCity=VG.city; VG.onChange(({city})=>{if(city!==lastCity){lastCity=city;renderGrid()}}); // ссылки WhatsApp зависят от города
+  renderCats(); renderGrid();
+})();
+</script>
+</body>
+</html>
