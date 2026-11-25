@@ -1,10 +1,10 @@
 /* ===== VITAGUM — данные сайта (единственный источник правды) =====
-   Контакты — из Instagram @vitagum.kz. Цены: в Instagram их нет;
-   2 200 ₸ — из брифа (со слов блогера) — СВЕРИТЬ. Состав Organic — liki.uz. */
+   Контакты — из постов Instagram @vitagum_kaz (WP Астана +7 700 772 23 89, WP Алматы +7 747 840 30 86, тел. Астана +7 700 250 65 29).
+   Другие города → WhatsApp Астаны. Цена 2 200 ₸ — по ценникам на полке. Состав Organic — liki.uz. */
 window.VG_CONFIG = {
-  waAlmaty: '77058151377',
-  waAstana: '77058151377',
-  phones: ['+7 705 815 13 77', '+7 708 358 69 01'],
+  waAlmaty: '77478403086',
+  waAstana: '77007722389',
+  phones: ['+7 700 772 23 89', '+7 747 840 30 86', '+7 700 250 65 29'],
   instagram: 'https://www.instagram.com/vitagum_kaz/',
   postPrice: 1500,
   b2bMin: 100000,
